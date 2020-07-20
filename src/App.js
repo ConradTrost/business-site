@@ -1,11 +1,14 @@
 import React from 'react';
-import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Container, Navbar, Nav, Jumbotron, Row, Col, Button } from 'react-bootstrap/';
+import { Container, Navbar, Nav } from 'react-bootstrap/';
 
-import birds from './assets/images/birds.jpg';
+import HomePage from './components/HomePage';
+import ServicesPage from './components/ServicesPage';
+
+import './App.scss';
+
 
 class App extends React.Component {
 
@@ -15,7 +18,7 @@ class App extends React.Component {
       title: "Conrad Trost",
       headerLinks: [
         { title: 'Home', path: '/' },
-        { title: 'About', path: '/about' },
+        { title: 'Services', path: '/services' },
         { title: 'Skills', path: '/skills' }
       ],
       home: {
@@ -37,34 +40,23 @@ class App extends React.Component {
       <Router>
         <Container className="p-0" fluid={true}>
 
-          <Navbar bg="transparent" expand="lg" fixed="top">
-            <Navbar.Brand>Conrad Trost</Navbar.Brand>
+          <Navbar expand="lg p-0 ml-auto" fixed="top" className="nav-bar" fluid="true" >
+            <Navbar.Brand href="/" className="nav-bar-brand"><i className="fas fa-power-off"></i>Phantom Web Development</Navbar.Brand>
 
             <Navbar.Toggle className="border-0" aria-controls="navbar-toggle" />
             <Navbar.Collapse id="navbar-toggle">
               
                 <Nav className="ml-auto">
-                  <Link className="nav-link" to="/">Home</Link>
-                  <Link className="nav-link" to="/about">About</Link>
-                  <Link className="nav-link" to="/skills">Skills</Link>
+                  <Link className="nav-link" to="/services">Services</Link>
+                  <Link className="nav-link" to="/about">Reviews</Link>
+                  <Link className="nav-link" to="/skills">Contact</Link>
                 </Nav>
             </Navbar.Collapse>
           </Navbar>
 
-          {/* <img src={birds} width="100%" position="absolute" alt={birds}></img> */}
+          <Route path="/" exact render={() => <HomePage />} />
+          <Route path="/services" render={() => <ServicesPage />} />
 
-          <Jumbotron className="jumbotron jumbotron-fluid">
-            <Row className="jumbo-row">
-              <Col></Col>
-              <Col>
-                <h2 className="centered-jumbo ml-auto display-3">Web Developer</h2>
-
-              </Col>
-              <Col></Col>
-            </Row>
-          </Jumbotron>
-          
-          <div className="idkyet"></div>
 
         </Container>
       </Router>
